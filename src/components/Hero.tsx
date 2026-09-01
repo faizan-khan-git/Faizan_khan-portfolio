@@ -1,9 +1,18 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
-import profileImg from '../assets/image.png';
+import { useState, useEffect } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import profileImg from "../assets/image.png";
 
-const roles = ["FULL-STACK DEVELOPER", "BACKEND SPECIALIST", "GENAI ENTHUSIAST"];
+const roles = [
+  "FULL-STACK DEVELOPER",
+  "BACKEND SPECIALIST",
+  "GENAI ENTHUSIAST",
+];
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -19,43 +28,49 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-zinc-950">
+    <section
+      id="home"
+      className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-zinc-950"
+    >
       {/* Background Image with Parallax & Blend */}
-      <motion.div 
+      <motion.div
         style={{ y: yParallax, opacity: opacityParallax }}
         className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
       >
-        <div className="relative w-full max-w-2xl aspect-square md:aspect-auto md:h-full md:w-auto opacity-30 md:opacity-40">
-           {/* Fade edges to blend seamlessly into zinc-950 background */}
+        <div className="relative w-full max-w-2xl aspect-square md:aspect-auto md:h-full md:w-auto opacity-40 md:opacity-50">
+          {/* Fade edges to blend seamlessly into zinc-950 background */}
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-zinc-950 z-10" />
           <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-transparent to-zinc-950 z-10" />
           <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-zinc-950/20 to-transparent z-10" />
-          <img 
-            src={profileImg} 
-            alt="Faizan Khan" 
-            className="w-full h-full object-cover object-center grayscale mix-blend-screen"
+          <img
+            src={profileImg}
+            alt="Faizan Khan"
+            className="w-full h-full object-cover object-center grayscale mix-blend-screen brightness-110"
           />
         </div>
       </motion.div>
 
-      {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 w-full">
+      {/* Greeting - Left side below navbar */}
+      <div className="absolute top-28 md:top-36 left-6 md:left-12 lg:left-24 z-20">
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-zinc-400 font-medium tracking-wide mb-6 text-sm md:text-base uppercase"
+          className="text-white font-serif text-2xl md:text-4xl italic tracking-wide text-glow"
         >
           Hi, I'm Md Faizan Khan
         </motion.p>
-        
+      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 w-full mt-16">
         <div className="h-[80px] md:h-[120px] flex items-center justify-center overflow-visible w-full">
           <AnimatePresence mode="wait">
             <motion.h1
               key={roles[roleIndex]}
-              initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -30, filter: 'blur(8px)' }}
+              initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: -30, filter: "blur(8px)" }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="text-4xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter w-full max-w-6xl text-glow"
             >
@@ -66,7 +81,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
